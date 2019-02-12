@@ -5,7 +5,7 @@ close all;
 %% Initialise parameters
 data = load('./data/data19_detrended15.mat');
 
-x = data.Yr;
+x = data.Y;
 K = length(x);
 AICm = cell(K,1);
 BICm = cell(K,1);

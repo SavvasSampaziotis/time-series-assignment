@@ -24,7 +24,7 @@ warning off
 
 % Select order for the MA filter
 order = 15;
-plotting = 0; % 1 for plotting, 0 for not
+plotting = 1; % 1 for plotting, 0 for not
 
 for k=1:K
     y = x{k};
@@ -83,9 +83,9 @@ end
 % plot_util(Yr, tempfun)
 
 %% Save data
-filename = sprintf('./data/data19_detrended%d.mat', order);
-
-save(filename, 'Y', 'Yr');
+% filename = sprintf('./data/data19_detrended%d.mat', order);
+% 
+% save(filename, 'Y', 'Yr');
 
 
 
