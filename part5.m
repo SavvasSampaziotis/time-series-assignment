@@ -1,16 +1,15 @@
 %% Load Time Series
 clear;
 clc;
-load('./data/dat19.dat');
 addpath( genpath('.'));
 
 %% Produce K windows of 250 samples each
-N = length(dat19);
-K = floor(N/250);
-x = cell(K,1);
-for k=1:K
-    x{k} = dat19( (1:250) + (k-1)*250 );
-end
+
+% Set the path to load the data
+data = load('./data/data19_detrended21.mat');
+
+x = data.Yr;
+K = length(x);
 
 %% Initialise parameters
 P = 5;
@@ -54,6 +53,18 @@ for k = 1 : K
     R_2(k) = calculateR2(Xpredicted{k}, Xtesting{k});
 end
 
+% If you want to read the NRMSE and R_2 arrays then uncomment the below
+% section
+
+% fprintf('NRMSE:\n');
+% for k = 1 : K
+%     fprintf('%0.3f ',  NRMSE(k));
+% end
+% fprintf('\nR^2:\n');
+% for k = 1 : K
+%     fprintf('%0.3f ',  R_2(k));
+% end
+% fprintf('\n');
 %% Plotting 
 Xerror = cell(K,1);
 for k = 1 : K

@@ -1,7 +1,7 @@
 function [aicMap, bicMap, nrmseMap] = fitK(y, index)
 
-P = 10;
-Q = 7;
+P = 7;
+Q = 0;
 
 aicMap = zeros(Q+1,P+1);
 bicMap = zeros(Q+1,P+1);
@@ -14,7 +14,7 @@ for p = 0:P
         aicMap(q+1, p+1) = aicS;
         bicMap(q+1, p+1) = bicS;
         nrmseMap(q+1, p+1) = nrmseV;
-        fprintf("Window %d: AR(%d) MA(%d) finished\n", index, p, q);
+        fprintf('Window %d: AR(%d) MA(%d) finished\n', index, p, q);
     end
 end
 
