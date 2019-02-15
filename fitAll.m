@@ -29,12 +29,12 @@ end
 
 %% Save data
 % order = 21;
-filename = sprintf('./data/IC.mat');
+filename = sprintf('./data/ICcheck.mat');
 
 save(filename, 'AICm', 'BICm', 'NRMSEm');
 
 %% Select Information Criterion adb windows
-ICdata = load('./data/IC.mat');
+ICdata = load('./data/ICcheck.mat');
 
 IC = ICdata.AICm;
 NRMSE = ICdata.NRMSEm;
