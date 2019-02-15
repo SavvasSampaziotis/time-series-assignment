@@ -26,7 +26,7 @@ meanXtraining = zeros(K,1);
 Xtesting = cell(K,1);
 
 % Part of the data used for prediction. It contains the testingData minus
-% the meanof trainingData
+% the mean of trainingData
 Xxtesting = cell(K,1);
 
 for k = 1 : K
@@ -35,7 +35,7 @@ for k = 1 : K
     ytraining = y(1:trainingSize);
     meanXtraining(k) = mean(ytraining);
     
-    Xtraining{k} = y(1:trainingSize) - meanXtraining(k);
+    Xtraining{k} = ytraining - meanXtraining(k);
     
     Xtesting{k} = y(trainingSize-P:end);
     Xxtesting{k} = y(trainingSize-P:end) - meanXtraining(k);
