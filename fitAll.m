@@ -28,18 +28,18 @@ end
 
 
 %% Save data
-order = 31;
-filename = sprintf('./data/ICr%d.mat', order);
+% order = 21;
+filename = sprintf('./data/IC.mat');
 
 save(filename, 'AICm', 'BICm', 'NRMSEm');
 
 %% Select Information Criterion adb windows
-ICdata = load('./data/ICr31.mat');
+ICdata = load('./data/IC.mat');
 
 IC = ICdata.AICm;
 NRMSE = ICdata.NRMSEm;
 
-windows = [4:6];
+windows = [1:11];
 %% Plotting
 
 figure(100); clf;

@@ -71,5 +71,5 @@ for k = 1 : K
     Xerror{k} = Xtesting{k} - Xpredicted{k};
 end
 
-figure(1); hold on;
+figure(1);
 plot_X(Xerror, 'prediction error');
