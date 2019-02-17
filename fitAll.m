@@ -3,9 +3,9 @@ clc;
 close all;
 
 %% Initialise parameters
-data = load('../data/data19_detrended.mat');
+data = load('./data/data19_detrended21.mat');
 
-x = data.Y;
+x = data.Yr;
 K = length(x);
 AICm = cell(K,1);
 BICm = cell(K,1);
@@ -26,28 +26,20 @@ for i = windows
     NRMSEm{i} = nrmseMap;
 end
 
+
 %% Save data
-<<<<<<< HEAD:functionUtils/fitAll.m
-filename = sprintf('../data/IC.mat');
-=======
 % order = 21;
 filename = sprintf('./data/ICcheck.mat');
->>>>>>> Andreas:fitAll.m
 
 save(filename, 'AICm', 'BICm', 'NRMSEm');
 
 %% Select Information Criterion adb windows
-<<<<<<< HEAD:functionUtils/fitAll.m
-ICdata = load('../data/ICcheck.mat');
-=======
 ICdata = load('./data/ICcheck.mat');
->>>>>>> Andreas:fitAll.m
 
 IC = ICdata.AICm;
 NRMSE = ICdata.NRMSEm;
 
 windows = [1:11];
-displayLeast = 0;
 %% Plotting
 
 figure(100); clf;
@@ -75,12 +67,14 @@ for k = 1 : length(windows)
     grid on;
     ylim([min(tempIC(:))-0.01 min(tempIC(:)) + 0.1]);
     
-    if displayLeast
-        [minQ,minP] = find(min(tempIC(:))==tempIC);
-        minP = minP-1;
-        minQ = minQ-1;
-        fprintf('\n \n \nWindow %d: Least was found as a AR(%d) MA(%d)\n', windows(k), minP, minQ);
-        fprintf('Window %d: Least had NRMSE of %0.3f\n', windows(k), nrmseMap(minQ+1,minP+1));
-    end
+    [minQ,minP] = find(min(tempIC(:))==tempIC);
+    minP = minP-1;
+    minQ = minQ-1;
+    % plot3(minP, minQ, min(temp(:)), 'rX', 'MarkerSize',20 )
+    % xlabel('p')
+    % ylabel('q')
+    fprintf('\n \n \nWindow %d: Least was found as a AR(%d) MA(%d)\n', windows(k), minP, minQ);
+    fprintf('Window %d: Least had NRMSE of %0.3f\n', windows(k), nrmseMap(minQ+1,minP+1));
+    
 end
 suptitle('dat19: IC');
