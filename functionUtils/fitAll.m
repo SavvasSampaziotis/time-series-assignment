@@ -27,21 +27,12 @@ for i = windows
 end
 
 %% Save data
-<<<<<<< HEAD:functionUtils/fitAll.m
 filename = sprintf('../data/IC.mat');
-=======
-% order = 21;
-filename = sprintf('./data/ICcheck.mat');
->>>>>>> Andreas:fitAll.m
 
 save(filename, 'AICm', 'BICm', 'NRMSEm');
 
 %% Select Information Criterion adb windows
-<<<<<<< HEAD:functionUtils/fitAll.m
 ICdata = load('../data/ICcheck.mat');
-=======
-ICdata = load('./data/ICcheck.mat');
->>>>>>> Andreas:fitAll.m
 
 IC = ICdata.AICm;
 NRMSE = ICdata.NRMSEm;
