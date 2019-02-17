@@ -1,18 +1,25 @@
-%% Load Time Series
+%% Clear workspace and load path to MATLAB
+
 clear;
 clc;
-load('./data/dat19.dat');
-addpath( genpath('.'));
+addpath( genpath('../'));
 
+%% Load Time Series
 
-y = dat19(6:6:end);
-% y = (y-mean(y))/std(y);
+data = load('../data/dat19.dat');
+
+y = data(6:6:end);
+y = (y-mean(y))/std(y);
+
 N = length(y);
 n = 1 : N;
+
 orderMA = 21;
 ordenPoly = 21;
+
 mu2V = polynomialfit(y,ordenPoly);
 maV = movingaveragesmooth2(y, orderMA);
+
 datapoly = y - mu2V;
 dataMA = y - maV;
 
@@ -50,7 +57,7 @@ upperlim = ceil(max([datapoly ; dataMA]));
 figure(3); clf;
 subplot(2,1,1)
 plot(n,datapoly);
-title1 = sprintf('Difference between real and polynomial order %d', ordenPoly);
+title1 = sprintf('Detrended time series with polynomial order %d', ordenPoly);
 title(title1);
 xlabel('weeks')
 xlim([1 N])
@@ -58,7 +65,7 @@ ylim([downlim upperlim])
 
 subplot(2,1,2)
 plot(n,dataMA);
-title1 = sprintf('Difference between real and polynomial order %d', orderMA);
+title1 = sprintf('Detrended time series with MA order %d', orderMA);
 title(title1);
 xlabel('weeks')
 xlim([1 N])

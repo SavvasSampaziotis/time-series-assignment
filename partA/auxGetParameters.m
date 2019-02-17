@@ -1,11 +1,12 @@
+%% Clear workspace
 clear;
 clc;
 close all;
 
 %% Initialise parameters
-data = load('./data/data19_detrended21.mat');
+data = load('../data/data19_detrended.mat');
 
-x = data.Yr;
+x = data.Y;
 K = length(x);
 AICcm = zeros(K,2);
 NRMSEm = zeros(K,2);

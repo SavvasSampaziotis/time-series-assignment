@@ -4,8 +4,8 @@ function [x, numOut, xOutliers] = removeOutlier(x)
     
     xOutliers = x(outlier_idx);
     
-    x(outlier_idx) = interp1(all_idx(~outlier_idx), x(~outlier_idx), all_idx(outlier_idx)) ;
     % Linearly interpolate over outlier idx for x
+    x(outlier_idx) = interp1(all_idx(~outlier_idx), x(~outlier_idx), all_idx(outlier_idx)) ;
     
     numOut = sum(outlier_idx);
 end

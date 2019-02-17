@@ -1,13 +1,17 @@
-%% Load Time Series
+%% Clear workspace
 clear;
 clc;
 
-data = load('./data/detrendB.mat');
+%% Load Time Series
+
+data = load('../data/detrendB.mat');
 y = data.y;
 
 N = length(y);
 n = 1 : N;
+
 %% Initialise parameters
+
 P = 5;
 Q = 0;
 trainingSize = ceil(N*0.6);
@@ -36,8 +40,11 @@ Xpredicted = predict(armamodel,Xxtesting,1) + meanXtraining;
 NRMSE = nrmse(Xtesting,Xpredicted);
 R_2 = calculateR2(Xpredicted, Xtesting);
 
-fprintf('\nNRMSE: %0.3f\n', NRMSE);
-fprintf('R^2: %0.3f\n', R_2);
+fprintf('\nNRMSE: %0.4f\n', NRMSE);
+fprintf('R^2: %0.4f\n', R_2);
+
+
+%% Plotting
 
 figure(1); clf;
 plot(y);
