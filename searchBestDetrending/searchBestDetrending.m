@@ -1,3 +1,5 @@
+%% This script is deprecated and not used in the final analysis of the project. 
+
 %% Load Time Series
 clear;
 load('dat19.dat');

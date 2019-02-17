@@ -10,7 +10,6 @@ function [  ] = plot_util( x, plotfun, titlePart )
         subplot(3,4,k);
         
         plotfun(x{k})
-        
 %         v = axis; v(2) = length(x{k});
 %         axis(v);
 %         pbaspect([1 0.5 1])
