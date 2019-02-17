@@ -2,11 +2,9 @@
 
 clear;
 clc;
-addpath( genpath('../'));
-
 %% Load Time Series
 
-data = load('../data/dat19.dat');
+data = load('./data/dat19.dat');
 
 y = data(6:6:end);
 y = (y-mean(y))/std(y);
@@ -15,7 +13,7 @@ N = length(y);
 n = 1 : N;
 
 orderMA = 21;
-ordenPoly = 21;
+ordenPoly = 18;
 
 mu2V = polynomialfit(y,ordenPoly);
 maV = movingaveragesmooth2(y, orderMA);
@@ -39,20 +37,21 @@ legend('real', 'plynomial');
 xlabel('weeks')
 xlim([1 N])
 title(title1);
+grid on;
 
 subplot(2,1,2)
-
 plot(n,y,n,maV);
 title1 = sprintf('MA filter order %d', orderMA);
 legend('real', 'MA filter');
 xlim([1 N])
 title(title1);
 xlabel('weeks')
-
+grid on;
 
 %% Plot diferences
 downlim = floor(min([datapoly ; dataMA]));
 upperlim = ceil(max([datapoly ; dataMA]));
+grid on;
 
 figure(3); clf;
 subplot(2,1,1)
@@ -62,6 +61,7 @@ title(title1);
 xlabel('weeks')
 xlim([1 N])
 ylim([downlim upperlim])
+grid on;
 
 subplot(2,1,2)
 plot(n,dataMA);
@@ -70,6 +70,7 @@ title(title1);
 xlabel('weeks')
 xlim([1 N])
 ylim([downlim upperlim])
+grid on;
 
 
 
