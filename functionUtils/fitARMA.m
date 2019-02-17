@@ -79,8 +79,8 @@ for T=1:Tmax
     else
         xpreV = tmpS{1}+mx;
     end
-    nrmseV(T) = nrmse(xV(q+1:n),xpreV(q+1:n));
-    R2(T) = calculateR2(xpreV(q+1:n), xV(q+1:n));
+    nrmseV(T) = nrmse(xV(q+1:n-1),xpreV(q+2:n));
+    R2(T) = calculateR2(xpreV(q+1:n-1), xV(q+2:n));
     if flag
         nrmseV(T) = 2;
     end
