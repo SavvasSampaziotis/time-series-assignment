@@ -17,7 +17,7 @@ for k = 1 : n
     P = [1:10];
     Q = [0:5, 20 ,30];
 %     Q = [0:5];  % Uncomment this if you want without the extra Q
-    
+%     Q = [0 20 30]; % Uncomment this if you want big Q
     np = length(P);
     nq = length(Q);
     
@@ -26,12 +26,12 @@ for k = 1 : n
         lgn(num) = sprintf(' q = %d', Q(num));
     end
     
-    for i = 1 : nq
+    for i = 1:nq % this is the change for big Q [1 7 8]
         plot(P, tempIC(:,i));
     end
     xlabel('p');
     ylabel('AICc');
-    legend(lgn, 'Location', 'BestOutside')
+   
     title(['window ', num2str(windows(k))]);
     grid on;
 %     ylim([min(tempIC(:))-0.01 min(tempIC(:)) + 0.1]);
@@ -39,11 +39,9 @@ for k = 1 : n
     [minQ,minP] = find(min(tempIC(:))==tempIC);
     minP = minP-1;
     minQ = minQ-1;
-    % plot3(minP, minQ, min(temp(:)), 'rX', 'MarkerSize',20 )
-    % xlabel('p')
-    % ylabel('q')
     fprintf('\n \n \nWindow %d: Least was found as a AR(%d) MA(%d)\n', windows(k), minP, minQ);
     fprintf('Window %d: Least had NRMSE of %0.3f\n', windows(k), nrmseMap(minQ+1,minP+1));
     
 end
 suptitle('dat19: IC');
+legend(lgn, 'Location', 'Best')

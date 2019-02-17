@@ -1,19 +1,12 @@
 %% Load Time Series
 clear;
 clc;
-load('./data/dat19.dat');
-addpath( genpath('.'));
 
+data = load('./data/detrendB.mat');
+y = data.y;
 
-y = dat19(6:6:end);
-y = (y-mean(y))/std(y);
 N = length(y);
 n = 1 : N;
-ordenPoly = 21;
-
-mu2V = polynomialfit(y,ordenPoly);
-datapoly = y - mu2V;
-
 %% Initialise parameters
 P = 5;
 Q = 0;
@@ -47,7 +40,7 @@ fprintf('\nNRMSE: %0.3f\n', NRMSE);
 fprintf('R^2: %0.3f\n', R_2);
 
 figure(1); clf;
-plot(datapoly);
+plot(y);
 xlim([0 length(Xtesting)])
 xlabel('weeks')
 title1 = sprintf('Prediction Error for AR(%d) method', P);

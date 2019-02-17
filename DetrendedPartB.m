@@ -15,20 +15,20 @@ maxLags = 20;
 
 
 mu2V = polynomialfit(y,ordenPoly);
-datapoly = y - mu2V;
+y = y - mu2V;
 
-
+save('./data/detrendB.mat', 'y');
 %% Plot autocorr and partial corr
 
 figure(1); clf;
-plot(datapoly);
+plot(y);
 xlim([1 N])
 xlabel('weeks')
 title(['Detrended Time series - polynomifal filter of ' num2str(ordenPoly) ' order']);
 
 figure(2); clf;
-autocorr(datapoly, maxLags)
+autocorr(y, maxLags)
 
 figure(3); clf;
-parcorr(datapoly, maxLags)
+parcorr(y, maxLags)
 
