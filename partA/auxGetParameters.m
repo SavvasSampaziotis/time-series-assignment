@@ -18,9 +18,9 @@ windows = 1 : K;
 %% Create ARMA models
 
 for i = windows
-    for p = 2:3
+    for p = 2
         y = x{i};
-        [nrmseV,phiV,thetaV,SDz,aicS,fpeS,R2,armamodel] = fitARMA(y,p,0);
+        [nrmseV,phiV,thetaV,SDz,aicS,fpeS,R2,armamodel] = fitARMA2(y,p,0);
         AICcm(i, p-1) = aicS;
         NRMSEm(i, p-1) = nrmseV;
         R2m(i, p-1) = R2;

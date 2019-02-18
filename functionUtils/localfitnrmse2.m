@@ -1,4 +1,4 @@
-function [nrmseV,preM] = localfitnrmse(xV,tau,m,Tmax,nnei,q,tittxt)
+function [nrmseV,preM] = localfitnrmse2(xV,tau,m,Tmax,nnei,q,tittxt)
 % [nrmseV,preM] = localfitnrmse(xV,tau,m,Tmax,nnei,q,tittxt)
 % LOCALFITNRMSE makes fitting using a local model of zeroth order (average 
 % mapping or nearest neighbor mappings if only one neighbor is chosen) or a 

@@ -48,8 +48,11 @@ R_2 = zeros(K,1);
 for k = 1 : K
     armamodel = armax(Xtraining{k}, [P Q]);
     Xpredicted{k} = predict(armamodel,Xxtesting{k},1) + meanXtraining(k);
-    NRMSE(k) = nrmse(Xtesting{k},Xpredicted{k});
-    R_2(k) = calculateR2(Xpredicted{k}, Xtesting{k});
+    xPred = Xpredicted{k}(2:end);
+    xTest = Xtesting{k}(1:end-1);
+%     NRMSE(k) = nrmse(Xtesting{k}, Xpredicted{k});
+    NRMSE(k) = nrmse(xTest, xPred);
+    R_2(k) = calculateR2(xPred, xTest);
 end
 
 %% Display metrics values

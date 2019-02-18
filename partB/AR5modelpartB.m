@@ -1,10 +1,10 @@
 %% Clear workspace
-clear;
-clc;
+% clear;
+% clc;
 
 %% Load Time Series
 
-data = load('../data/detrendB.mat');
+data = load('./data/detrendB.mat');
 y = data.y;
 
 N = length(y);
@@ -12,7 +12,7 @@ n = 1 : N;
 
 %% Initialise parameters
 
-P = 5;
+P = 1;
 Q = 0;
 trainingSize = ceil(N*0.6);
 
@@ -37,20 +37,24 @@ Xxtesting = y(trainingSize-P:end) - meanXtraining;
 
 armamodel = armax(Xtraining, [P Q]);
 Xpredicted = predict(armamodel,Xxtesting,1) + meanXtraining;
-NRMSE = nrmse(Xtesting,Xpredicted);
-R_2 = calculateR2(Xpredicted, Xtesting);
+xPred = Xpredicted(2:end);
+xTest = Xtesting(1:end-1);
+NRMSE = nrmse(xTest, xPred);
+R_2 = calculateR2(xPred, xTest);
 
 fprintf('\nNRMSE: %0.4f\n', NRMSE);
 fprintf('R^2: %0.4f\n', R_2);
 
-
+e = xTest-xPred;
 %% Plotting
-
-figure(1); clf;
-plot(y);
+% hold on;
+figure(1); clf; 
+% subplot(2,1,2)
+plot([xTest, xPred]);
+plot(e)
 xlim([0 length(Xtesting)])
 xlabel('weeks')
-title1 = sprintf('Prediction Error for AR(%d) method', P);
+title1 = sprintf('Prediction vs Testing Dataset for AR(%d) method', P);
 title(title1);
-
-
+legend('Original Samples', 'Prediction');
+grid on;

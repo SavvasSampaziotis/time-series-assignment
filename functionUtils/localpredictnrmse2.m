@@ -1,4 +1,4 @@
-function [nrmseV,preM] = localpredictnrmse(xV,nlast,tau,m,Tmax,nnei,q,tittxt)
+function [nrmseV,preM] = localpredictnrmse2(xV,nlast,tau,m,Tmax,nnei,q,tittxt)
 % [nrmseV,preM] = localpredictnrmse(xV,nlast,tau,m,Tmax,nnei,q,tittxt)
 % LOCALPREDICTNRMSE makes iterative predictions with a local model of
 % zeroth order  (average mapping or nearest neighbor mappings if only one

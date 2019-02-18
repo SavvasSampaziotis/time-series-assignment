@@ -98,11 +98,13 @@ if ~isempty(tittxt)
 	figno = gcf;
 	figure(figno)
 	clf
-	plot([1:mmax]',fnncountV,'.-k')
+	plot([1:mmax]',fnncountV,'-k')
     hold on
-	plot([1 mmax],thresh*[1 1],'c--')
+    plot([1:mmax]',fnncountV,'or')
+	plot([1 mmax],thresh*[1 1],'r--')
 	xlabel('m')
 	ylabel('FNN(m)')
 	title([tittxt,' FNN (\tau=',int2str(tau),' w=',int2str(theiler),...
         ' f=',int2str(escape),'), n=',int2str(n)])
+    grid on;
 end
